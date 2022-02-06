@@ -1,26 +1,29 @@
+shopt -s extglob
 #!/bin/bash
 echo "please enter a word"
 read  word
 
 case $word in
 
-[a-z]* )
-        echo "you entered a lowercase letter"
-        ;;
-[A-Z]* )
-        echo "you entered a uppercase letter"
-        ;;
-[0-9]* )
-         echo "you entered a number"
-        ;;
-"") 
-        echo "you entered nothing"
-        ;;
-[a-zA-Z]* )
-        echo "you entered a mix uppercase/lowercase"
-        ;;
-[a-zA-Z0-9]* )
-        echo "you entered a mix uppercase/lowercase/numbers"
-        ;;
+	+([A-Z]) )
+                echo "you entered a uppercase letter"
+                ;;
+        +([a-z]) )
+                echo "you entered a lowercase letter"
+                ;;
+	+([0-9]) )
+                 echo "you entered a number"
+                ;;
+
+        +([A-za-z]) )
+                echo "you entered a mix uppercase/lowercase"
+                ;;
+	+([A-Za-z0-9]) )
+        	echo "you entered a mix uppercase/lowercase/numbers"
+        	;;
+        "") 
+		  echo "you entered nothing"
+                ;;
 esac
+
 
